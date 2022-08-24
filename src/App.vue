@@ -8,7 +8,7 @@
       {{this.current || '0'}}
     </div>
     <div @click="clear()" class="btn">
-      AC
+      C
     </div>
     <div @click="sign()" class="btn">
       +/−
@@ -162,6 +162,7 @@ export default {
 } .display {
   grid-column: 1 / 5;
   background-color: royalblue;
+  color: lightgray;
 } .plus {
   grid-row: 5 / 7;
   grid-column: 4 / 5;
@@ -177,7 +178,7 @@ export default {
   background-color: #EE9400;
 } .equals {
   background-color: royalblue;
-  color: white;
+  color: lightgray;
 } .equals:hover {
   background-color: #3058D0;
 }
