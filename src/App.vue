@@ -8,7 +8,7 @@
       {{this.current || '0'}}
     </div>
     <div @click="clear()" class="btn">
-      C
+      AC
     </div>
     <div @click="sign()" class="btn">
       +/−
@@ -59,9 +59,9 @@
       0
     </div>
     <div @click="dot()" class="btn">
-      .
+      ,
     </div>
-    <div @click="equals()" class="btn">
+    <div @click="equals()" class="btn equals">
       =
     </div>
   </div>
@@ -101,16 +101,17 @@ export default {
       }
       this.logInfo()
     }, dot() { //DOT-METODEN ANSVARAR FÖR DECIMALTECKNET, TEKNISKT SÄTT ANVÄNDS "," ISTÄLLET FÖR "." PÅ SVENSKA, MEN DET ÄR INTE NÖDVÄNDIGT I M.V.P.
-      if (this.current.indexOf('.') === -1) {
+      if (this.current.indexOf(',') === -1) {
         if (this.current !== '0') {
-          this.append('.');
+          this.append(',');
         } else {
-          this.current = '0.';
+          this.current = '0,';
         }
         this.logInfo()
       }
     }, setPrevious() {
       this.previous = this.current;
+      this.current = '‎';
       this.opClicked = true;
     }, devide() { //DIVISION
       this.op = (x, y) => x / y;
@@ -138,7 +139,7 @@ export default {
         this.logInfo();
         console.log('--------------------------------------');
         if (this.previous !== null) {
-          this.current = `${this.op(parseFloat(this.previous), parseFloat(this.current))}`
+          this.current = `${Math.round(this.op(parseFloat(this.previous.replaceAll(',', '.')), parseFloat(this.current.replaceAll(',', '.'))) * 1000000000) / 1000000000}`.replaceAll('.', ',') //FLOATING POINT NUMBERS, VÄLDIGT INTRESSANT, SE: YOUTUBE.COM/watch?v=PZRI1IfStY0&ab_channel=Computerphile
           this.previous = null;
         }
         this.logInfo();
@@ -167,8 +168,17 @@ export default {
 } .btn {
   background-color: lightgray;
   border: 0.25px solid black;
+} .btn:hover {
+  background-color: #C2C2C2;
 } .op {
   background-color: orange;
   color: white;
+} .op:hover {
+  background-color: #EE9400;
+} .equals {
+  background-color: royalblue;
+  color: white;
+} .equals:hover {
+  background-color: #3058D0;
 }
 </style>
