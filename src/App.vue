@@ -77,19 +77,19 @@ export default {
       opClicked: false
     }
   }, methods: {
-    clear() { //CLEAR-METHOD CLEARS THE DISPLAY 
+    clear() { //CLEAR-METODEN RENSAR BILDRUTAN
       this.current = '0'
       this.logInfo()
-    }, sign() { //SIGN-METHOD INVERTS SIGNAGE FOR THE DISPLAYED VALUE
+    }, sign() { //SIGN-METODEN INVERTERAR TECKNET FÖR DET VISADE VÄRDET
       if (this.current != 0) {
         this.current = this.current.charAt('0') === '-' ?
           this.current.slice(1) : `-${this.current}`;
       }
       this.logInfo()
-    }, percent() { //PERCENT-METHOD DIVIDES CURRENT VALUE WITH 100
+    }, percent() { //PERCENT-METODEB DIVIDERAR NUVARANSDE VÄRDE MED 100 – 100% = 1, ETC.
       this.current = `${parseFloat(this.current) / 100}`
       this.logInfo()
-    }, append(input) { //APEND-METHOD INSERTS IPUT AT THE END OF THE CURRENT DISPLAYED VALUE
+    }, append(input) { //APEND-METODEN LÄGGER TILL INMATADE VÄRDEN PÅ SLUTET
       if (this.opClicked) {
         this.current = '';
         this.opClicked = false;
@@ -100,43 +100,49 @@ export default {
         this.current = `${this.current}${input}`;
       }
       this.logInfo()
-    }, dot() {
+    }, dot() { //DOT-METODEN ANSVARAR FÖR DECIMALTECKNET, TEKNISKT SÄTT ANVÄNDS "," ISTÄLLET FÖR "." PÅ SVENSKA, MEN DET ÄR INTE NÖDVÄNDIGT I M.V.P.
       if (this.current.indexOf('.') === -1) {
-        this.append('.');
+        if (this.current !== '0') {
+          this.append('.');
+        } else {
+          this.current = '0.';
+        }
         this.logInfo()
       }
     }, setPrevious() {
       this.previous = this.current;
       this.opClicked = true;
-    }, devide() {
+    }, devide() { //DIVISION
       this.op = (x, y) => x / y;
       this.setPrevious();
       this.logInfo();
-    }, times() {
+    }, times() { //MULTIPLIKATION
       this.op = (x, y) => x * y;
       this.previous = this.current;
       this.opClicked = true;
       this.setPrevious();
       this.logInfo();
-    }, minus() {
+    }, minus() { //SUBTRAKTION
       this.op = (x, y) => x - y;
       this.previous = this.current;
       this.opClicked = true;
       this.setPrevious();
       this.logInfo();
-    }, add() {
+    }, add() { //ADDITION
       this.op = (x, y) => x + y;
       this.previous = this.current;
       this.opClicked = true;
       this.setPrevious();
       this.logInfo();
-    }, equals() {
+    }, equals() { //LIKA MED
         this.logInfo();
         console.log('--------------------------------------');
-        this.current = `${this.op(parseFloat(this.previous), parseFloat(this.current))}`
-        this.previous = null;
+        if (this.previous !== null) {
+          this.current = `${this.op(parseFloat(this.previous), parseFloat(this.current))}`
+          this.previous = null;
+        }
         this.logInfo();
-    }, logInfo() {
+    }, logInfo() { //LOGGAR INFO TILL KONSOLEN
       console.log(`Operator: ${this.op}`);
       console.log(`Previous state: ${this.previous}`);
       console.log(`Current state: ${this.current}`);
@@ -150,7 +156,7 @@ export default {
 .calculator {
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 0.75fr;
   grid-auto-rows: minmax(50px, auto);
 } .display {
   grid-column: 1 / 5;
