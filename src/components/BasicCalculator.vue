@@ -75,7 +75,7 @@ export default {
     }
   }, methods: {
     clear() { //CLEAR-METODEN RENSAR BILDRUTAN
-      this.current = '0'
+      this.current = '0';
       this.logInfo()
     }, sign() { //SIGN-METODEN INVERTERAR TECKNET FÖR DET VISADE VÄRDET
       if (this.current != 0) {
