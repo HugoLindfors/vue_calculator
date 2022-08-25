@@ -4,7 +4,7 @@
       {{this.current || '0'}}
     </div>
     <div @click="clear()" class="btn">
-      C
+      {{this.clearState}}
     </div>
     <div @click="sign()" class="btn">
       +/−
@@ -70,7 +70,8 @@ export default {
       previous: null,
       current: '0',
       op: null,
-      opClicked: false
+      opClicked: false,
+      clearState: 'AC'
     }
   }, methods: {
     clear() { //CLEAR-METODEN RENSAR BILDRUTAN
@@ -107,8 +108,9 @@ export default {
       }
     }, setPrevious() {
       this.previous = this.current;
-      this.current = '‎';
+      this.current = '0';
       this.opClicked = true;
+      this.clearState = 'C';
     }, devide() { //DIVISION
       this.op = (x, y) => x / y;
       this.setPrevious();
@@ -138,6 +140,7 @@ export default {
           this.current = `${Math.round(this.op(parseFloat(this.previous.replaceAll(',', '.')), parseFloat(this.current.replaceAll(',', '.'))) * 1000000000) / 1000000000}`.replaceAll('.', ',') //FLOATING POINT NUMBERS, VÄLDIGT INTRESSANT, SE: YOUTUBE.COM/watch?v=PZRI1IfStY0&ab_channel=Computerphile
           this.previous = null;
         }
+        this.clearState = 'AC';
         this.logInfo();
     }, logInfo() { //LOGGAR INFO TILL KONSOLEN
       console.log(`Operator: ${this.op}`);
