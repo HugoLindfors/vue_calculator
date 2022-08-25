@@ -36,10 +36,10 @@
     <div class="btn">
       2ⁿᵈ
     </div>
-    <div class="btn">
+    <div @click="powerTo(2)" class="btn">
       x²
     </div>
-    <div class="btn">
+    <div @click="powerTo(3)" class="btn">
       x³
     </div>
     <div class="btn">
@@ -63,7 +63,7 @@
     <div @click="times()" class="btn op">
       ×
     </div>
-    <div class="btn">
+    <div @click="fraction()" class="btn">
       1/x
     </div>
     <div class="btn">
@@ -93,7 +93,7 @@
     <div @click="minus()" class="btn op">
       −
     </div>
-    <div class="btn">
+    <div @click="factorial()" class="btn">
       x!
     </div>
     <div class="btn">
@@ -223,6 +223,12 @@ export default {
       this.opClicked = true;
       this.setPrevious();
       this.logInfo();
+    }, fraction() {
+        this.current = `${1 / parseFloat(this.current.replaceAll(',', '.'))}`.replaceAll('.', ',');
+    }, factorial() {
+        this.current = `${math.factorial(parseFloat(this.current))}`.replaceAll('.', ',');
+    }, powerTo(n) {
+        this.current = `${math.pow(parseFloat(this.current).replaceAll(',', '.'), n)}`.replaceAll('.', ',');
     }, equals() { //LIKA MED
         this.logInfo();
         console.log('--------------------------------------');
