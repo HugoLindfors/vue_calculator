@@ -159,7 +159,7 @@ export default {
   grid-template-columns: 1fr 1fr 1fr 0.75fr;
   grid-auto-rows: minmax(50px, auto);
 } .display {
-  grid-column: 2 / 5;
+  grid-column: 1 / 5;
   background-color: antiquewhite;
   border: 0.25px solid black;
 } .plus {
