@@ -3,6 +3,24 @@
     <div class="display">
       {{this.current || '0'}}
     </div>
+    <div @click="append('(')" class="btn">
+      (
+    </div>
+    <div @click="append(')')" class="btn">
+      )
+    </div>
+    <div class="btn">
+      mc
+    </div>
+    <div class="btn">
+      m+
+    </div>
+    <div class="btn">
+      m-
+    </div>
+    <div class="btn">
+      mr
+    </div>
     <div @click="clear()" class="btn">
       {{this.clearState}}
     </div>
@@ -14,6 +32,24 @@
     </div>
     <div @click="devide()" class="btn op">
       ÷
+    </div>
+    <div class="btn">
+      2ⁿᵈ
+    </div>
+    <div class="btn">
+      x²
+    </div>
+    <div class="btn">
+      x³
+    </div>
+    <div class="btn">
+      xʸ
+    </div>
+    <div class="btn">
+      eˣ
+    </div>
+    <div class="btn">
+      10ˣ
     </div>
     <div @click="append('7')" class="btn">
       7
@@ -27,6 +63,24 @@
     <div @click="times()" class="btn op">
       ×
     </div>
+    <div class="btn">
+      1/x
+    </div>
+    <div class="btn">
+      √x
+    </div>
+    <div class="btn">
+      ³√x
+    </div>
+    <div class="btn">
+      ʸ√x
+    </div>
+    <div class="btn">
+      ln
+    </div>
+    <div class="btn">
+      log₁₀
+    </div>
     <div @click="append('4')" class="btn">
       4
     </div>
@@ -39,6 +93,24 @@
     <div @click="minus()" class="btn op">
       −
     </div>
+    <div class="btn">
+      x!
+    </div>
+    <div class="btn">
+      sin
+    </div>
+    <div class="btn">
+      cos
+    </div>
+    <div class="btn">
+      tan
+    </div>
+    <div @click="append('2,71828182846')" class="btn">
+      e
+    </div>
+    <div class="btn">
+      EE
+    </div>
     <div @click="append('1')" class="btn">
       1
     </div>
@@ -50,6 +122,24 @@
     </div>
     <div @click="add()" class="btn plus op">
       +
+    </div>
+    <div class="btn">
+      Rad
+    </div>
+    <div class="btn">
+      sinh
+    </div>
+    <div class="btn">
+      cosh
+    </div>
+    <div class="btn">
+      tanh
+    </div>
+    <div @click="append('3,14159265359')" class="btn">
+      π
+    </div>
+    <div class="btn">
+      Rand
     </div>
     <div @click="append('0')" class="btn">
       0
@@ -156,15 +246,15 @@ export default {
 .calculator {
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 0.75fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-auto-rows: minmax(50px, auto);
 } .display {
-  grid-column: 2 / 5;
+  grid-column: 2 / 11;
   background-color: antiquewhite;
   border: 0.25px solid black;
 } .plus {
   grid-row: 5 / 7;
-  grid-column: 4 / 5;
+  grid-column: 10 / 11;
 } .btn {
   background-color: lightgray;
   border: 0.25px solid black;
