@@ -19,7 +19,7 @@ import ScientificCalculator from "./components/ScientificCalculator.vue";
 export default {
   data() {
     return {
-      advancedOptions: false,
+      advancedOptions: false, //JAG ÄR INTE RIKTIGT NÖJD MED SCI-KLALKYLATORN – DÄRFÖR HAR JAG DOLT DEN; OM DU VILL AKTIVERA DEN ÄNDARA advancedOptions till true
       toggleText: 'Ba'
     }
   }, methods: {
